@@ -1,0 +1,37 @@
+.slider {
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: -1;
+}
+.slider > a {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    opacity: 0.5;
+}
+.slider > a > img {
+    object-fit: contain;
+    width: 100vw;
+}
+.slider > a .content {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    padding: 20px;
+}
+a.active {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    opacity: 1;
+    transition: all ease-in-out 0.8s;
+}
+a.back {
+    left: -100%;
+    z-index: -1;
+    opacity: 1;
+    transition: all ease-in-out 0.8s;
+}
