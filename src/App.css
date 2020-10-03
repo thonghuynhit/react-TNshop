@@ -2,3 +2,20 @@
   width: 100%;
   overflow: hidden;
 }
+.scrollTop {
+  height: 30px;
+  width: 30px;
+  background-color: transparent;
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+  opacity: 0;
+  transition: all ease 0.4s;
+  color: var(--color);
+  cursor: pointer;
+}
+div.showScroll {
+  opacity: 1;
+}

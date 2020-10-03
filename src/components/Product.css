@@ -1,0 +1,92 @@
+.product {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+    height: 460px;
+    width: 350px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--color);
+}
+.product > div {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.product:hover > div > img {
+    transform: scale(1.12);
+}
+.product img {
+    width: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    transition: all ease 0.4s;
+}
+.product > p {
+    text-align: center;
+    margin: 5px 0 0 0;
+}
+.product > h4 {
+    margin: 0;
+    padding: 3px;
+    text-align: center;
+    font-weight: 400;
+}
+@media only screen and (max-width: 1265px) {
+    .product {
+        height: 420px;
+        width: 290px;
+    }
+}
+@media only screen and (max-width: 1065px) {
+    .product {
+        height: 395px;
+        width: 265px;
+    }
+}
+@media only screen and (max-width: 990px) {
+    .product {
+        height: 380px;
+        width: 250px;
+    }
+    .product > img {
+        max-height: 360px;
+    }
+}
+@media only screen and (max-width: 950px) {
+    .product {
+        height: 410px;
+        width: 290px;
+    }
+}
+@media only screen and (max-width: 805px) {
+    .product {
+        height: 440px;
+        width: 300px;
+    }
+}
+@media only screen and (max-width: 670px) {
+    .product {
+        height: 390px;
+        width: 245px;
+    }
+}
+@media only screen and (max-width: 560px) {
+    .product {
+        height: 360px;
+        width: 205px;
+    }
+}
+@media only screen and (max-width: 468px) {
+    .product {
+        height: 300px;
+        width: 165px;
+    }
+}
+@media only screen and (max-width: 368px) {
+    .product {
+        height: 250px;
+        width: 125px;
+    }
+}

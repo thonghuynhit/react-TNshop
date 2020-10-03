@@ -53,6 +53,47 @@
 }
 .functional {
     justify-content: flex-end;
+    padding: 0;
+}
+.functional > li:first-child {
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    width: 250px;
+    height: 33px;
+}
+.functional > li:first-child > .search {
+    position: absolute;
+    right: 0;
+    transition: all ease 0.5s;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.functional > li:first-child > .hiddenInputText {
+    position: absolute;
+    left: 0;
+    opacity: 0.2;
+    z-index: 9999;
+} 
+.functional > li:first-child > input {
+    position: absolute;
+    right: 200%;
+    transition: all ease 0.5s;
+    opacity: 0;
+    padding: 5px 15px;
+    width: 85%;
+    font-size: 1.1rem;
+    border-radius: 20px;
+    border: solid 0.01rem var(--color);
+    outline: none;
+    font-weight: 100;
+}
+.functional > li:first-child > input.showInputText {
+    right: 0;
+    opacity: 1;
+}
+.hiddenSearchButton {
+    opacity: 0;
 }
 .logo {
     flex: 1;

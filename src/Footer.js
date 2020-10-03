@@ -13,7 +13,7 @@ function Footer() {
                     <h3>explore</h3>
                     <ul>
                         <li>
-                            <Link to="/collections">Collections</Link>
+                            <Link to="/shop">Collections</Link>
                         </li>
                         <li>
                             <Link to="/new-arrivals">New Arrivals</Link>

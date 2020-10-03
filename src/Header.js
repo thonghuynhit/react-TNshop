@@ -13,6 +13,32 @@ import PermIdentityTwoToneIcon from '@material-ui/icons/PermIdentityTwoTone'
 
 
 function Header() {
+    const [searchPage, setSearchPage] = React.useState("")
+    React.useEffect(() => {
+        const search = document.querySelector(".search")
+        const searchText = document.querySelector(".searchText")
+        search.addEventListener("click", () => {
+            searchText.classList.add("showInputText")
+            search.classList.add("hiddenSearchButton")
+            searchText.focus()
+        })
+        console.log(searchPage)
+        searchText.addEventListener("focus", () => {
+            window.addEventListener("keyup", event => {
+                if (event.keyCode === 13) {
+                    if (searchPage.trim() == "") {
+                        console.log("May chua nhap dua lieu kia")
+                    } else {
+                        console.log("direction")
+                    }
+                }
+            }) 
+        })
+        searchText.addEventListener("blur", () => {
+            searchText.classList.remove("showInputText")
+            search.classList.remove("hiddenSearchButton")
+        })
+    }, [searchPage])
     return (
         <div className="header">
             <div className="top">
@@ -37,7 +63,7 @@ function Header() {
                                     <h4>shop</h4>
                                     <ul>
                                         <li>
-                                            <Link to="all-collections" className="link">All Collections</Link>
+                                            <Link to="shop" className="link">All Collections</Link>
                                         </li>
                                         <li>
                                             <Link to="new-arrivals" className="link">New Arrivals</Link>
@@ -89,7 +115,8 @@ function Header() {
                 </div>
                 <ul className="functional">
                     <li className="link">
-                        <SearchIcon />
+                        <input placeholder="Enter product of name.." className="searchText" type="text" value={ searchPage } onChange={ event => setSearchPage(event.target.value) } />
+                        <SearchIcon className="search" />
                     </li>
                     <li>
                         <Link className="link" to="/login">
