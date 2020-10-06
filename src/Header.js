@@ -10,13 +10,15 @@ import kids from './img/kids.webp'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import SearchIcon from '@material-ui/icons/Search'
 import PermIdentityTwoToneIcon from '@material-ui/icons/PermIdentityTwoTone'
-
+import { useValueContext } from './reducer'
 
 function Header() {
+    const [{products}] = useValueContext()
     const [searchPage, setSearchPage] = React.useState("")
     React.useEffect(() => {
         const search = document.querySelector(".search")
         const searchText = document.querySelector(".searchText")
+        const relustSearch = document.querySelector(".relust-search")
         search.addEventListener("click", () => {
             searchText.classList.add("showInputText")
             search.classList.add("hiddenSearchButton")
@@ -24,21 +26,30 @@ function Header() {
         })
         console.log(searchPage)
         searchText.addEventListener("focus", () => {
-            window.addEventListener("keyup", event => {
-                if (event.keyCode === 13) {
-                    if (searchPage.trim() == "") {
-                        console.log("May chua nhap dua lieu kia")
-                    } else {
-                        console.log("direction")
-                    }
-                }
-            }) 
+            relustSearch.classList.add("show-relust")
+            
         })
         searchText.addEventListener("blur", () => {
             searchText.classList.remove("showInputText")
             search.classList.remove("hiddenSearchButton")
+            relustSearch.classList.remove("show-relust")
         })
     }, [searchPage])
+    const searchEngine = () => {
+        let temp = ""
+        if (searchPage.length === 0) {
+            temp = "Vui long nhap"
+        } else if (searchPage.length === 1) {
+            let t = products.map(item => item.title)
+            for (let i of t) {
+                if (i.toLowerCase()[0] == searchPage) {
+                    temp += i
+                }
+            }
+        } else {}
+        return temp
+    }
+    console.log(searchEngine())
     return (
         <div className="header">
             <div className="top">
@@ -117,6 +128,11 @@ function Header() {
                     <li className="link">
                         <input placeholder="Enter product of name.." className="searchText" type="text" value={ searchPage } onChange={ event => setSearchPage(event.target.value) } />
                         <SearchIcon className="search" />
+                        <div className="relust-search">
+                            {
+                                searchEngine()
+                            }
+                        </div>
                     </li>
                     <li>
                         <Link className="link" to="/login">

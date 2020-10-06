@@ -56,7 +56,6 @@
     padding: 0;
 }
 .functional > li:first-child {
-    overflow: hidden;
     display: flex;
     position: relative;
     width: 250px;
@@ -65,20 +64,19 @@
 .functional > li:first-child > .search {
     position: absolute;
     right: 0;
-    transition: all ease 0.5s;
+    transition: all ease 0.2s;
     top: 50%;
     transform: translateY(-50%);
 }
 .functional > li:first-child > .hiddenInputText {
     position: absolute;
-    left: 0;
-    opacity: 0.2;
-    z-index: 9999;
+    right: 10px;
+    opacity: 0;
 } 
 .functional > li:first-child > input {
     position: absolute;
-    right: 200%;
-    transition: all ease 0.5s;
+    right: 100px;
+    transition: all ease 0.4s;
     opacity: 0;
     padding: 5px 15px;
     width: 85%;
@@ -87,6 +85,7 @@
     border: solid 0.01rem var(--color);
     outline: none;
     font-weight: 100;
+    z-index: 99;
 }
 .functional > li:first-child > input.showInputText {
     right: 0;
@@ -94,6 +93,22 @@
 }
 .hiddenSearchButton {
     opacity: 0;
+}
+.relust-search {
+    position: absolute;
+    top: 32px;
+    height: 500px;
+    width: 250px;
+    background-color: red;
+    display: none;
+    transition: all ease 0.4s;
+    right: 0;
+    z-index: 999;
+    
+}
+div.show-relust {
+    display: flex;
+
 }
 .logo {
     flex: 1;

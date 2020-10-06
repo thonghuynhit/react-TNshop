@@ -8,6 +8,23 @@
     font-size: 0.9rem;
     font-weight: 300;
     color: var(--color);
+    position: relative;
+}
+.product > span {
+    position: absolute;
+    top: 15px;
+    right: 12%;
+    height: 50px;
+    width: 50px;
+    word-break: break-all;
+    color: rgb(255, 255, 255);
+    background-color: var(--color);
+    border-radius: 50%;
+    text-align: center;
+    padding: 9px;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    font-weight: 500;
 }
 .product > div {
     padding: 0;
@@ -70,6 +87,9 @@
     .product {
         height: 390px;
         width: 245px;
+    }
+    .product > span {
+        display: none;
     }
 }
 @media only screen and (max-width: 560px) {

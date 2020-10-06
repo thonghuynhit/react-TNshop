@@ -18,5 +18,17 @@ const useValueContext = () => React.useContext(Context)
 //     let product = temp.find(item => slug === item.link)
 //     return product
 // }
+const countHero = (type, typeProduct) => {
+    let temp = [{type: "All", count: 0}]
+    const types = [...new Set(typeProduct.map(item => item[type]))]
+    for (let i of types) {
+        let count = 0
+        for (let j of typeProduct) {
+            if (i === j[type]) count++
+        }
+        temp = [...temp, {type: i, count: count}]
+    }
+    return temp
+}
 
-export { Reducer, useValueContext, Context }
+export { Reducer, useValueContext, Context, countHero }

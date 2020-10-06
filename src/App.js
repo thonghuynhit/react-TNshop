@@ -3,6 +3,8 @@ import './App.css'
 import { Route, Link, Switch } from 'react-router-dom'
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
 
+import Tops from './page/Tops'
+import NewArrivals from './page/NewArrivals'
 import SingleProduct from './page/SingleProduct'
 import Header from './Header'
 import Footer from './Footer'
@@ -30,6 +32,8 @@ function App() {
       <Route path="/" exact component={ Home } />
       <Route path="/shop" exact component={ Shop } />
       <Route path="/shop/:slug" exact component={ SingleProduct } />
+      <Route path="/new-arrivals" exact component={ NewArrivals } />
+      <Route path="/tops" exact component={ Tops } />
       <Footer />
       <div href="#" onClick={ scrollToTop } className="scrollTop">
         <VerticalAlignTopIcon />
