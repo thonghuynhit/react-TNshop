@@ -3,6 +3,9 @@ import './App.css'
 import { Route, Link, Switch } from 'react-router-dom'
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
 
+import Kids from './page/Kids'
+import Hats from './page/Hats'
+import Bottoms from './page/Bottoms'
 import Tops from './page/Tops'
 import NewArrivals from './page/NewArrivals'
 import SingleProduct from './page/SingleProduct'
@@ -23,7 +26,7 @@ function App() {
       }
     }
   }, [window.scrollY])
-  const scrollToTop = event => {
+  const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: "smooth"})
   }
   return (
@@ -34,6 +37,9 @@ function App() {
       <Route path="/shop/:slug" exact component={ SingleProduct } />
       <Route path="/new-arrivals" exact component={ NewArrivals } />
       <Route path="/tops" exact component={ Tops } />
+      <Route path="/bottoms" exact component={ Bottoms } />
+      <Route path="/hats" exact component={ Hats } />
+      <Route path="/kids" exact component={ Kids } />
       <Footer />
       <div href="#" onClick={ scrollToTop } className="scrollTop">
         <VerticalAlignTopIcon />
