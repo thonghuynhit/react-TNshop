@@ -69,7 +69,7 @@ const initState = {
         { title: "The Bottoms", image: a2, price: 54, link: "mingo-bXutton-up", type: "bottoms", color: "aqua" },
         { title: "Mingo Button Up", image: a1, price: 3, link: "mingCo-button-up", type: "hats", color: "purple" },
     ],
-    collabnorations: [
+    collaborations: [
         { title: "Pine Hats", image: a1, price: 5, link: "pine-SAhasts", type: "hats", color: "black" },
         { title: "Mingo Button Up", image: a2, price: 20, link: "misngo-button-up", type: "shirt", color: "pink" },
         { title: "Mingo Button Up", image: a1, price: 12, link: "mincgo-button-up", type: "pants", color: "purple" },

@@ -4,7 +4,7 @@ import { Route, Link, Switch } from 'react-router-dom'
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
 
 import AboutUs from './page/AboutUs'
-import Collabnorations from './page/Collabnorations'
+import Collaborations from './page/Collaborations'
 import Kids from './page/Kids'
 import Hats from './page/Hats'
 import Bottoms from './page/Bottoms'
@@ -43,7 +43,7 @@ function App() {
       <Route path="/bottoms" exact component={ Bottoms } />
       <Route path="/hats" exact component={ Hats } />
       <Route path="/kids" exact component={ Kids } />
-      <Route path="/collaborations" exact component={ Collabnorations } />
+      <Route path="/collaborations" exact component={ Collaborations } />
       <Footer />
       <div onClick={ scrollToTop } className="scrollTop">
         <VerticalAlignTopIcon />

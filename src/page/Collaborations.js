@@ -3,33 +3,33 @@ import { useValueContext, countHero } from '../reducer'
 import ShopTop from '../components/ShopTop'
 import Product from '../components/Product'
 
-function Collabnorations() {
-    const [{collabnorations}] = useValueContext()
+function Collaborations() {
+    const [{collaborations}] = useValueContext()
     const [type, setType] = React.useState("All")
     const [color, setColor] = React.useState("All")
     const [price, setPrice] = React.useState(0)
-    const productType = countHero("type", collabnorations)
-    const colors = countHero("color", collabnorations)
-    const minPrice = Math.min(...collabnorations.map(item => item.price))
-    const maxPrice = Math.max(...collabnorations.map(item => item.price))
+    const productType = countHero("type", collaborations)
+    const colors = countHero("color", collaborations)
+    const minPrice = Math.min(...collaborations.map(item => item.price))
+    const maxPrice = Math.max(...collaborations.map(item => item.price))
     const filterProduct = () => {
-        let temp = collabnorations
+        let temp = collaborations
         if (type === "All" && color === "All") {
 
         } else if (type === "All") {
-            temp = collabnorations.filter(item => item.color === color)
+            temp = collaborations.filter(item => item.color === color)
         } else if (color === "All") {
-            temp = collabnorations.filter(item => item.type === type)
+            temp = collaborations.filter(item => item.type === type)
         } else {
-            temp = collabnorations.filter(item => item.color === color)
-            temp = collabnorations.filter(item => item.type === type)
+            temp = collaborations.filter(item => item.color === color)
+            temp = collaborations.filter(item => item.type === type)
         }
         temp = temp.filter(item => item.price >= price)
         return temp
     }
     return (
         <div className="shops">
-            <ShopTop title="Collabnorations" image={ "" } />
+            <ShopTop title="Collaborations" image={ "" } />
             <div className="shops__content">
                 <div className="filter">
                     <div>
@@ -65,4 +65,4 @@ function Collabnorations() {
         </div>
     )
 }
-export default Collabnorations
+export default Collaborations

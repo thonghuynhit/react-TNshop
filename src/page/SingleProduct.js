@@ -2,9 +2,11 @@ import React from 'react'
 import { useValueContext } from '../reducer'
 import Kids from './Kids'
 import './SingleProduct.css'
+import { Link } from 'react-router-dom'
 
 function SingleProduct(props) {
     const [{ products, new_Arrivals, kids, tops, bottoms, hats, collaborations, }] = useValueContext()
+    const [quantity, setQuantity] = React.useState(1)
     const whatLink = props.match.params.slug.split("-")
     let lastLink = whatLink[whatLink.length - 1]
     const dataSingle = () => {
@@ -24,34 +26,71 @@ function SingleProduct(props) {
             default: return products.find(item => (item.link + "-shop") === props.match.params.slug)
         }
     }
-    console.log(tops.find(item => item.link === props.match.params.slug))
-    console.log(props.match.params.slug)
-    console.log(dataSingle())
+    const directionLink = () => {
+        if (lastLink === "arrivals") {
+            return "new-arrivals"
+        } else {
+            return lastLink
+        }
+    }
+    const incream = () => {
+        setQuantity(() => quantity + 1)
+    }
+    const decream = () => {
+        if (quantity !== 1) {
+            setQuantity(() => quantity - 1)
+        }
+    }
+    const valueQuantity = e => {
+        if (!isNaN(e.target.value)) {
+            if (e.target.value !== " ") {
+                setQuantity(parseInt(e.target.value))
+            }
+        }
+    }
+    React.useEffect(() => {
+        if (isNaN(quantity)) {
+            setQuantity(1)
+        }
+    }, [quantity])
+
+    console.log(typeof quantity)
     console.log(lastLink)
     return (
         <div className="single-product">
-            <div>
-                <img src={ dataSingle().image } />
+            <div className="shops__top">
+                <h6>
+                    <Link className="link--shop" to="/"> Home </Link>
+                     » <Link className="link--shop" to={`/${directionLink()}`}> { directionLink() } </Link>
+                     » <span> { dataSingle().title } </span>
+                </h6>
+                <img src={ "" } />
+                <h1 style={{ border: "none" }}>{ "" }</h1>
             </div>
-            <div>
-                <h2>{ dataSingle().title }</h2>
-                <h4>{ dataSingle().price }$</h4>
-                <div className="colors">Color: <span>{ dataSingle().color }</span></div>
-                <div className="types">Type: <span>{ dataSingle().type }</span></div>
-                <div className="quantity">Quantity
-                    <div>
-                        <button> + </button>
-                        <span>1</span>
-                        <button> - </button>
+            <div className="wrap-content">
+                <div>
+                    <img src={ dataSingle().image } />
+                </div>
+                <div>
+                    <h1>{ dataSingle().title }</h1>
+                    <h4>${ dataSingle().price.toFixed(2) }</h4>
+                    <div className="colors">Color: <span>{ dataSingle().color }</span></div>
+                    <div className="types">Type: <span>{ dataSingle().type }</span></div>
+                    <div className="quantity">Quantity: 
+                        <div> 
+                            <button onClick={ incream }> + </button>
+                            <input type="text" value={ quantity } onChange={ valueQuantity } />
+                            <button onClick={ decream }> - </button>
+                        </div>
                     </div>
+                    <div className="add-to-cart">
+                        <button>Add to Cart</button>
+                    </div>
+                    <div className="buy-it-now">
+                        <button>Buy it Now</button>
+                    </div>
+                    <div className="social"></div>
                 </div>
-                <div className="add-to-cart">
-                    <button>Add to Cart</button>
-                </div>
-                <div className="buy-it-now">
-                    <button>Buy it Now</button>
-                </div>
-                <div className="social"></div>
             </div>
         </div>
     )
