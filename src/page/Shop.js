@@ -99,7 +99,7 @@ function Shop() {
                 </div>
                 <div className="products">
                     {
-                        productFinish.length > 0 && productFinish.map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link } />)
+                        productFinish.length > 0 && productFinish.map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link + "-shop" } />)
                     }
                 </div>
                 {

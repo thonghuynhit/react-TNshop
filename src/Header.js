@@ -22,13 +22,10 @@ function Header() {
         search.addEventListener("click", () => {
             searchText.classList.add("showInputText")
             search.classList.add("hiddenSearchButton")
+            relustSearch.classList.add("show-relust")
             searchText.focus()
         })
         console.log(searchPage)
-        searchText.addEventListener("focus", () => {
-            relustSearch.classList.add("show-relust")
-            
-        })
         searchText.addEventListener("blur", () => {
             searchText.classList.remove("showInputText")
             search.classList.remove("hiddenSearchButton")
@@ -42,7 +39,7 @@ function Header() {
         } else if (searchPage.length === 1) {
             let t = products.map(item => item.title)
             for (let i of t) {
-                if (i.toLowerCase()[0] == searchPage) {
+                if (i.toLowerCase()[0] === searchPage) {
                     temp += i
                 }
             }
@@ -74,7 +71,7 @@ function Header() {
                                     <h4>shop</h4>
                                     <ul>
                                         <li>
-                                            <Link to="shop" className="link">All Collections</Link>
+                                            <Link to="/shop" className="link">All Collections</Link>
                                         </li>
                                         <li>
                                             <Link to="new-arrivals" className="link">New Arrivals</Link>
@@ -83,14 +80,14 @@ function Header() {
                                             <Link to="collaborations" className="link">Collaborations</Link>
                                         </li>
                                         <li>
-                                            <Link to="best-sellers" className="link">Best Sellers</Link>
+                                            <Link to="/shop" className="link">Best Sellers</Link>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <Link to="accessories" className="link">Accessories</Link>
                                         </li>
                                         <li>
                                             <Link to="gift-card" className="link">Gift Card</Link>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                                 <div className="sub-right">

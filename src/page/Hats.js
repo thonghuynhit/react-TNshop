@@ -58,7 +58,7 @@ export default function Hats() {
                 </div>
                 <div className="products">
                     {
-                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link } soldout={ item.soldout } />)
+                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link + "-hats" } soldout={ item.soldout } />)
                     }
                 </div>
                 {

@@ -1,37 +1,35 @@
 import React from 'react'
-import './Shop.css'
-import { Link } from 'react-router-dom'
 import { useValueContext, countHero } from '../reducer'
 import ShopTop from '../components/ShopTop'
 import Product from '../components/Product'
 
-function Bottoms() {
-    const [{bottoms}] = useValueContext()
+function Collabnorations() {
+    const [{collabnorations}] = useValueContext()
     const [type, setType] = React.useState("All")
     const [color, setColor] = React.useState("All")
     const [price, setPrice] = React.useState(0)
-    const productType = countHero("type", bottoms)
-    const colors = countHero("color", bottoms)
-    const minPrice = Math.min(...bottoms.map(item => item.price))
-    const maxPrice = Math.max(...bottoms.map(item => item.price))
+    const productType = countHero("type", collabnorations)
+    const colors = countHero("color", collabnorations)
+    const minPrice = Math.min(...collabnorations.map(item => item.price))
+    const maxPrice = Math.max(...collabnorations.map(item => item.price))
     const filterProduct = () => {
-        let temp = bottoms
+        let temp = collabnorations
         if (type === "All" && color === "All") {
 
         } else if (type === "All") {
-            temp = bottoms.filter(item => item.color === color)
+            temp = collabnorations.filter(item => item.color === color)
         } else if (color === "All") {
-            temp = bottoms.filter(item => item.type === type)
+            temp = collabnorations.filter(item => item.type === type)
         } else {
-            temp = bottoms.filter(item => item.color === color)
-            temp = bottoms.filter(item => item.type === type)
+            temp = collabnorations.filter(item => item.color === color)
+            temp = collabnorations.filter(item => item.type === type)
         }
         temp = temp.filter(item => item.price >= price)
         return temp
     }
     return (
         <div className="shops">
-            <ShopTop title="Bottoms" image={ "" } />
+            <ShopTop title="Collabnorations" image={ "" } />
             <div className="shops__content">
                 <div className="filter">
                     <div>
@@ -57,7 +55,7 @@ function Bottoms() {
                 </div>
                 <div className="products">
                     {
-                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link + "-bottoms" } soldout={ item.soldout } />)
+                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link + "-collaborations" } soldout={ item.soldout } />)
                     }
                 </div>
                 {
@@ -67,4 +65,4 @@ function Bottoms() {
         </div>
     )
 }
-export default Bottoms
+export default Collabnorations

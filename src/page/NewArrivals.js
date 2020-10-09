@@ -89,7 +89,7 @@ function NewArrivals() {
                 </div>
                 <div className="products">
                     {
-                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link } />)
+                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link + "-new-arrivals" } />)
                     }
                 </div>
                 {

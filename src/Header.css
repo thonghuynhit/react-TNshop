@@ -75,7 +75,7 @@
 } 
 .functional > li:first-child > input {
     position: absolute;
-    right: 100px;
+    right: 80px;
     transition: all ease 0.4s;
     opacity: 0;
     padding: 5px 15px;

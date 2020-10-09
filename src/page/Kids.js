@@ -58,7 +58,7 @@ export default function Kids() {
                 </div>
                 <div className="products">
                     {
-                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link } soldout={ item.soldout } />)
+                        filterProduct().length > 0 && filterProduct().map((item, index) => <Product key={ index } title={ item.title } image={ item.image } price={ item.price } link={ item.link + "-kids" } soldout={ item.soldout } />)
                     }
                 </div>
                 {
