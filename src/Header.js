@@ -10,6 +10,7 @@ import kids from './img/kids.webp'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import SearchIcon from '@material-ui/icons/Search'
 import PermIdentityTwoToneIcon from '@material-ui/icons/PermIdentityTwoTone'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import { useValueContext } from './reducer'
 
 function Header() {
@@ -137,7 +138,7 @@ function Header() {
                         </Link>
                     </li>
                     <li className="link">
-                        gio hang 9
+                        <ShoppingCartIcon />
                     </li>
                     <li className="link">
                         0000$

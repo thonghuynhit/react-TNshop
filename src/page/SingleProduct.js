@@ -5,7 +5,7 @@ import './SingleProduct.css'
 import { Link } from 'react-router-dom'
 
 function SingleProduct(props) {
-    const [{ products, new_Arrivals, kids, tops, bottoms, hats, collaborations, }] = useValueContext()
+    const [{ products, new_Arrivals, kids, tops, bottoms, hats, collaborations, carts }, dispatch] = useValueContext()
     const [quantity, setQuantity] = React.useState(1)
     const whatLink = props.match.params.slug.split("-")
     let lastLink = whatLink[whatLink.length - 1]
@@ -34,28 +34,52 @@ function SingleProduct(props) {
         }
     }
     const incream = () => {
-        setQuantity(() => quantity + 1)
+       if (quantity === "") {
+            setQuantity(1)
+       } else {
+            setQuantity(() => parseInt(quantity) + 1)
+       }
     }
     const decream = () => {
         if (quantity !== 1) {
             setQuantity(() => quantity - 1)
         }
+        if (quantity === "") {
+            setQuantity(1)
+        }
     }
     const valueQuantity = e => {
         if (!isNaN(e.target.value)) {
             if (e.target.value !== " ") {
-                setQuantity(parseInt(e.target.value))
+                setQuantity(e.target.value)
             }
         }
     }
     React.useEffect(() => {
-        if (isNaN(quantity)) {
+        if (parseInt(quantity) === 0) {
             setQuantity(1)
         }
     }, [quantity])
-
-    console.log(typeof quantity)
-    console.log(lastLink)
+    const addToCart = () => {
+        const addCart = document.querySelector(".cart-img")
+        addCart.classList.add("to-carts")
+        setTimeout(() => { 
+            addCart.classList.remove("to-carts")
+        }, 2000)
+        dispatch({
+            type: "Add_to_cart",
+            item: {
+                title: dataSingle().title,
+                image: dataSingle().image,
+                price: dataSingle().price,
+                color: dataSingle().color,
+                type: dataSingle().type,
+                quantity: quantity,
+                link: dataSingle().link + "-" + directionLink()
+            }
+        })
+    }
+    console.log(carts)
     return (
         <div className="single-product">
             <div className="shops__top">
@@ -64,18 +88,20 @@ function SingleProduct(props) {
                      » <Link className="link--shop" to={`/${directionLink()}`}> { directionLink() } </Link>
                      » <span> { dataSingle().title } </span>
                 </h6>
-                <img src={ "" } />
-                <h1 style={{ border: "none" }}>{ "" }</h1>
             </div>
             <div className="wrap-content">
-                <div>
+                <div className="effect-cart">
+                    <div className="cart-img">
+                        <img src={ dataSingle().image } />
+                    </div>
+                    <h1>{ dataSingle().title }</h1>
                     <img src={ dataSingle().image } />
                 </div>
                 <div>
                     <h1>{ dataSingle().title }</h1>
                     <h4>${ dataSingle().price.toFixed(2) }</h4>
-                    <div className="colors">Color: <span>{ dataSingle().color }</span></div>
-                    <div className="types">Type: <span>{ dataSingle().type }</span></div>
+                    <div className="colors">Color: <span style={{ color: dataSingle().color, textTransform: "capitalize", fontWeight: "600" }}>{ dataSingle().color }</span></div>
+                    <div className="types">Type: <span style={{ textTransform: "capitalize", fontWeight: "600" }}>{ dataSingle().type }</span></div>
                     <div className="quantity">Quantity: 
                         <div> 
                             <button onClick={ incream }> + </button>
@@ -84,12 +110,16 @@ function SingleProduct(props) {
                         </div>
                     </div>
                     <div className="add-to-cart">
-                        <button>Add to Cart</button>
+                        <button onClick={ addToCart }>Add to Cart</button>
                     </div>
                     <div className="buy-it-now">
                         <button>Buy it Now</button>
                     </div>
-                    <div className="social"></div>
+                    <div className="social">
+                        <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis suscipit enim et ex vulputate, non placerat sapien tincidunt.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

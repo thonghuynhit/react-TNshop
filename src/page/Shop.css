@@ -51,7 +51,7 @@ div.shops__top {
     text-transform: uppercase;
     color: rgb(85, 85, 85);
     font-weight: 300;
-    
+    background-color: #fff;
 }
 .shops__content > .filter > div > input {
     color: var(--color);
