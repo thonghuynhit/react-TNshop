@@ -1,6 +1,8 @@
 import a2 from './components/img/buttonup.webp'
 import a1 from './components/img/pinehat.webp'
 import a3 from './img/shirt.webp'
+import React from 'react'
+import { db, storage, auth } from './firebase'
 
 const initState = {
     products: [

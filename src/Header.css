@@ -73,6 +73,9 @@
     right: 10px;
     opacity: 0;
 } 
+.functional > li:last-child {
+    margin-right: 10px;
+}
 .functional > li:first-child > input {
     position: absolute;
     right: 80px;

@@ -31,7 +31,10 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: "smooth"})
   }
+
+
   return (
+    <div className="wrap">
     <div className="app">
       <Header />
       <Route path="/" exact component={ Home } />
@@ -48,6 +51,13 @@ function App() {
       <div onClick={ scrollToTop } className="scrollTop">
         <VerticalAlignTopIcon />
       </div>
+    </div>
+    <div className="checkout">
+      <div>
+        <h2>My Carts</h2>
+      </div>
+      <div></div>
+    </div>
     </div>
   );
 }

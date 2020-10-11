@@ -12,10 +12,12 @@ import SearchIcon from '@material-ui/icons/Search'
 import PermIdentityTwoToneIcon from '@material-ui/icons/PermIdentityTwoTone'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import { useValueContext } from './reducer'
+import CloseIcon from '@material-ui/icons/Close'
 
 function Header() {
-    const [{products}] = useValueContext()
+    const [{products, carts}] = useValueContext()
     const [searchPage, setSearchPage] = React.useState("")
+    const [checkout, setCheckout] = React.useState(false)
     React.useEffect(() => {
         const search = document.querySelector(".search")
         const searchText = document.querySelector(".searchText")
@@ -47,7 +49,28 @@ function Header() {
         } else {}
         return temp
     }
-    console.log(searchEngine())
+    const totalPrices = () => {
+        if (carts.length === 0) {
+            return 0
+        } else {
+            return carts.reduce((item1, item2) => item1 + (item2.price * item2.quantity), 0)
+        }
+    }
+    const toggleCheckout = () => {
+        setCheckout(!checkout)
+    }
+    React.useEffect(() => {
+        const check = document.querySelector(".checkout")
+        const app = document.querySelector(".app")
+        if (checkout) {
+            check.classList.add("checktoggle")
+            app.classList.add("apptoggle")
+        } else {
+            check.classList.remove("checktoggle")
+            app.classList.remove("apptoggle")
+        }
+    }, [checkout])
+    console.log(checkout)
     return (
         <div className="header">
             <div className="top">
@@ -137,11 +160,13 @@ function Header() {
                             <PermIdentityTwoToneIcon />
                         </Link>
                     </li>
-                    <li className="link">
-                        <ShoppingCartIcon />
+                    <li onClick={ toggleCheckout} className="link">
+                        {
+                            checkout ? <CloseIcon /> : <ShoppingCartIcon />
+                        }
                     </li>
-                    <li className="link">
-                        0000$
+                    <li onClick={ toggleCheckout } className="link">
+                        { totalPrices() }$
                     </li>
                 </ul>
             </div>
