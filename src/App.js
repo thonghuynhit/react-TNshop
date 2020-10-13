@@ -2,7 +2,10 @@ import React from 'react';
 import './App.css'
 import { Route, Link, Switch } from 'react-router-dom'
 import VerticalAlignTopIcon from '@material-ui/icons/VerticalAlignTop'
+import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt'
 
+import { useValueContext } from './reducer'
+import Carts from './components/Carts'
 import AboutUs from './page/AboutUs'
 import Collaborations from './page/Collaborations'
 import Kids from './page/Kids'
@@ -18,6 +21,7 @@ import Shop from './page/Shop'
 
 
 function App() {
+  const [{carts}, dispatch] = useValueContext()
   React.useEffect(() => {
     const scrollTop = document.querySelector(".scrollTop")
     window.onscroll = () => {
@@ -32,6 +36,19 @@ function App() {
     window.scrollTo({top: 0, behavior: "smooth"})
   }
 
+  const cartsAll = () => {
+    if (carts.length !== 0) {
+      return carts.map((item, index) => <Carts key={ index } cart={ item } />)
+    }
+  }
+
+  const subTotal = () => {
+    if (carts.length === 0) {
+      return 0
+    } else {
+      return carts.reduce((item1, item2) => item1 + (item2.price * item2.quantity), 0).toFixed(2)
+    }
+  }
 
   return (
     <div className="wrap">
@@ -56,7 +73,19 @@ function App() {
       <div>
         <h2>My Carts</h2>
       </div>
-      <div></div>
+      <div>
+        { cartsAll() }
+      </div>
+      <div>
+        <div className="subtotal">
+          <h4>Subtotal</h4>
+          <h4>${ subTotal() }</h4>
+        </div>
+        <div className="go-checkout">
+          <h5>Shipping calculated at check out</h5>
+          <button>Check Out <ArrowRightAltIcon className="arrow-right" /></button>
+        </div>
+      </div>
     </div>
     </div>
   );

@@ -15,9 +15,8 @@ import { useValueContext } from './reducer'
 import CloseIcon from '@material-ui/icons/Close'
 
 function Header() {
-    const [{products, carts}] = useValueContext()
+    const [{products, carts, checkoutToggle}, dispatch] = useValueContext()
     const [searchPage, setSearchPage] = React.useState("")
-    const [checkout, setCheckout] = React.useState(false)
     React.useEffect(() => {
         const search = document.querySelector(".search")
         const searchText = document.querySelector(".searchText")
@@ -57,20 +56,33 @@ function Header() {
         }
     }
     const toggleCheckout = () => {
-        setCheckout(!checkout)
+        dispatch({
+            type: "Checkout_toggle",
+            result: !checkoutToggle
+        })
+        // if (carts.length !== 0) {
+        //     setCheckout(!checkout)
+        // }
     }
     React.useEffect(() => {
         const check = document.querySelector(".checkout")
         const app = document.querySelector(".app")
-        if (checkout) {
+        if (checkoutToggle) {
             check.classList.add("checktoggle")
             app.classList.add("apptoggle")
         } else {
             check.classList.remove("checktoggle")
             app.classList.remove("apptoggle")
         }
-    }, [checkout])
-    console.log(checkout)
+        if (carts.length === 0) {
+            dispatch({
+                type: "Checkout_toggle",
+                result: false
+            })
+            // setCheckout(false)
+        }
+    }, [checkoutToggle])
+    console.log(checkoutToggle)
     return (
         <div className="header">
             <div className="top">
@@ -162,7 +174,7 @@ function Header() {
                     </li>
                     <li onClick={ toggleCheckout} className="link">
                         {
-                            checkout ? <CloseIcon /> : <ShoppingCartIcon />
+                            checkoutToggle ? <CloseIcon /> : <ShoppingCartIcon />
                         }
                     </li>
                     <li onClick={ toggleCheckout } className="link">

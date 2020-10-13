@@ -82,13 +82,17 @@ const initState = {
         { title: "The Bottoms", image: a2, price: 54, link: "mingo-butddton-up", type: "bottoms", color: "aqua" },
         { title: "Mingo Button Up", image: a1, price: 3, link: "mingo-bddutton-up", type: "hats", color: "purple" },
     ],
-    carts: []
+    carts: [],
+    checkoutToggle: false
 }
 
 function reducer(state, action) {
     switch (action.type) {
         case "Add_to_cart": 
             return { ...state, carts: [action.item, ...state.carts] }
+            break
+        case "Checkout_toggle" :
+            return { ...state, checkoutToggle: action.result }
             break
         default: return state
     }
