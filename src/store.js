@@ -85,7 +85,6 @@ const initState = {
     carts: [],
     checkoutToggle: false
 }
-
 function reducer(state, action) {
     switch (action.type) {
         case "Add_to_cart": 

@@ -10,55 +10,96 @@ function Carts({ cart }) {
     const changeQuantityCart = e => {
         if (e.target.value[e.target.value.length - 1] !== " ") {
             if (!isNaN(e.target.value[e.target.value.length - 1])) {
-                setQuantityCart(e.target.value)
+                //setQuantityCart(e.target.value)
+                dispatch({
+                    type: "Change_quantity_cart",
+                    change: changeQuantity(e.target.value)
+                })
             } else {
                 if (e.target.value === "") {
-                    setQuantityCart(e.target.value)
+                    dispatch({
+                        type: "Change_quantity_cart",
+                        change: changeQuantity(1)
+                    })
                 } else {
                     alert("Not number")
                 }
             }
         }
     }
+    console.log(cart.quantity)
+    console.log(quantityCart)
     React.useEffect(() => {
-        previousState.current = quantityCart
-    }, [quantityCart])
-
-    React.useEffect(() => {
-        const changeQuantity = () => {
-            let temp = carts
-            for (let i = 0; i < temp.length; i++) {
-                if (temp[i].id === cart.id) {
-                    temp[i] = {
-                        id: cart.id,
-                        title: cart.title,
-                        image: cart.image,
-                        price: cart.price,
-                        color: cart.color,
-                        type: cart.type,
-                        link: cart.link,
-                        quantity: quantityCart
-                    }
+        console.log(carts)
+    }, [])
+    const changeQuantity = (quantity_cart) => {
+        let temp = carts
+        for (let i = 0; i < temp.length; i++) {
+            if (temp[i].id === cart.id) {
+                temp[i] = {
+                    id: cart.id,
+                    title: cart.title,
+                    image: cart.image,
+                    price: cart.price,
+                    color: cart.color,
+                    type: cart.type,
+                    link: cart.link,
+                    quantity: quantity_cart
                 }
             }
-            return temp
         }
-        if (quantityCart === "") {
-            dispatch({
-                type: "Change_quantity_cart",
-                change: []
-            })
-        } else {
-            if (quantityCart !== cart.quantity) {
-                dispatch({
-                    type: "Change_quantity_cart",
-                    change: changeQuantity()
-                })
-            }
+        return temp
+    }
+    if (quantityCart === "") {
+        // dispatch({
+        //     type: "Change_quantity_cart",
+        //     change: changeQuantity()
+        // })
+    } else {
+        if (quantityCart !== cart.quantity) {
+            // dispatch({
+            //     type: "Change_quantity_cart",
+            //     change: changeQuantity()
+            // })
         }
-        console.log(changeQuantity())
-    }, [quantityCart])
-    console.log(previousState.current)
+    }
+
+    // React.useEffect(() => {
+    //     previousState.current = quantityCart
+    //     const changeQuantity = () => {
+    //         let temp = carts
+    //         for (let i = 0; i < temp.length; i++) {
+    //             if (temp[i].id === cart.id) {
+    //                 temp[i] = {
+    //                     id: cart.id,
+    //                     title: cart.title,
+    //                     image: cart.image,
+    //                     price: cart.price,
+    //                     color: cart.color,
+    //                     type: cart.type,
+    //                     link: cart.link,
+    //                     quantity: quantityCart
+    //                 }
+    //             }
+    //         }
+    //         return temp
+    //     }
+    //     if (quantityCart === "") {
+    //         dispatch({
+    //             type: "Change_quantity_cart",
+    //             change: changeQuantity()
+    //         })
+    //     } else {
+    //         if (quantityCart !== cart.quantity) {
+    //             dispatch({
+    //                 type: "Change_quantity_cart",
+    //                 change: changeQuantity()
+    //             })
+    //         }
+    //     }
+    //     console.log(previousState.current)
+    //     console.log(changeQuantity())
+    // }, [quantityCart])
     return (
         <Link className="carts" to={ "/shop/" + cart.link }>
             <div className="image">
@@ -69,7 +110,7 @@ function Carts({ cart }) {
                 <h4>${ cart.price.toFixed(2) } <span style={{ color: cart.color }}> { cart.color }</span></h4>
                 <div className="quantity">
                     <button>+</button>
-                    <input type="text" value={ quantityCart} onChange={ changeQuantityCart } />
+                    <input type="text" value={ cart.quantity} onChange={ changeQuantityCart } />
                     <button>-</button>
                     <button>
                         <DeleteForeverIcon />

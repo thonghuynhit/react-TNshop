@@ -142,6 +142,7 @@ div.showScroll {
 }
 .carts > .infomation > .quantity > button:hover {
   background-color: var(--color);
+  color: #fff;
 }
 .carts > .infomation > .quantity > button:last-child {
   position: absolute;
@@ -150,6 +151,9 @@ div.showScroll {
   color: rgb(252, 87, 87);
   border: none;
   outline: none;
+}
+.carts > .infomation > .quantity > input {
+  color: rgb(44, 44, 44);
 }
 .carts > .infomation > .quantity > button:last-child:hover {
   background: none;
