@@ -136,13 +136,24 @@ div.showScroll {
   border-left: none;
   border-right: none;
 }
+.carts > .infomation > .quantity > button {
+  color: rgb(146, 146, 146);
+  transition: all ease 0.4s;
+}
+.carts > .infomation > .quantity > button:hover {
+  background-color: var(--color);
+}
 .carts > .infomation > .quantity > button:last-child {
   position: absolute;
   right: 0;
   top: 0;
-  color: rgb(241, 41, 41);
+  color: rgb(252, 87, 87);
   border: none;
   outline: none;
+}
+.carts > .infomation > .quantity > button:last-child:hover {
+  background: none;
+  color: rgb(202, 39, 39);
 }
 .carts > .infomation > h3 {
   text-align: center;

@@ -21,7 +21,7 @@ import Shop from './page/Shop'
 
 
 function App() {
-  const [{carts}, dispatch] = useValueContext()
+  const [{carts, checkoutToggle}, dispatch] = useValueContext()
   React.useEffect(() => {
     const scrollTop = document.querySelector(".scrollTop")
     window.onscroll = () => {
@@ -46,13 +46,20 @@ function App() {
     if (carts.length === 0) {
       return 0
     } else {
-      return carts.reduce((item1, item2) => item1 + (item2.price * item2.quantity), 0).toFixed(2)
+      return carts.reduce((item1, item2) => item1 + (item2.price * parseInt(item2.quantity)), 0).toFixed(2)
     }
   }
-
+  const closeCart = () => {
+    if (checkoutToggle) {
+      dispatch({
+        type: "Checkout_toggle",
+        result: false
+      })
+    }
+  }
   return (
     <div className="wrap">
-    <div className="app">
+    <div className="app" onClick={ closeCart }>
       <Header />
       <Route path="/" exact component={ Home } />
       <Route path="/about-us" exact component={ AboutUs } />

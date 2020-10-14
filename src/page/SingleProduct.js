@@ -60,6 +60,14 @@ function SingleProduct(props) {
             setQuantity(1)
         }
     }, [quantity])
+    const autoId = () => {
+        const date = new Date()
+        const dayMonthYear = date.toLocaleDateString().split("/").join("")
+        const hoursMinutesSeconds = date.toLocaleTimeString().split(":").join("").split(" ").join("")
+        const miliseconds = date.getMilliseconds().toString()
+        const random = Math.floor(Math.random() * 100).toString()
+        return dayMonthYear + hoursMinutesSeconds + miliseconds + random
+    }
     const addToCart = () => {
         const addCart = document.querySelector(".cart-img")
         addCart.classList.add("to-carts")
@@ -69,6 +77,7 @@ function SingleProduct(props) {
         dispatch({
             type: "Add_to_cart",
             item: {
+                id: autoId(),
                 title: dataSingle().title,
                 image: dataSingle().image,
                 price: dataSingle().price,

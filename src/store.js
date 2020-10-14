@@ -94,6 +94,9 @@ function reducer(state, action) {
         case "Checkout_toggle" :
             return { ...state, checkoutToggle: action.result }
             break
+        case "Change_quantity_cart": 
+            return { ...state, carts: action.change }
+            break
         default: return state
     }
 }

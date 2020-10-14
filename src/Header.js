@@ -27,7 +27,6 @@ function Header() {
             relustSearch.classList.add("show-relust")
             searchText.focus()
         })
-        console.log(searchPage)
         searchText.addEventListener("blur", () => {
             searchText.classList.remove("showInputText")
             search.classList.remove("hiddenSearchButton")
@@ -82,7 +81,6 @@ function Header() {
             // setCheckout(false)
         }
     }, [checkoutToggle])
-    console.log(checkoutToggle)
     return (
         <div className="header">
             <div className="top">
