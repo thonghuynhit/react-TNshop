@@ -176,7 +176,7 @@ function Header() {
                         }
                     </li>
                     <li onClick={ toggleCheckout } className="link">
-                        { totalPrices() }$
+                        ${ totalPrices() }
                     </li>
                 </ul>
             </div>

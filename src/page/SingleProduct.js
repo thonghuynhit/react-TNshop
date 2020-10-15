@@ -69,24 +69,26 @@ function SingleProduct(props) {
         return dayMonthYear + hoursMinutesSeconds + miliseconds + random
     }
     const addToCart = () => {
-        const addCart = document.querySelector(".cart-img")
-        addCart.classList.add("to-carts")
-        setTimeout(() => { 
-            addCart.classList.remove("to-carts")
-        }, 2000)
-        dispatch({
-            type: "Add_to_cart",
-            item: {
-                id: autoId(),
-                title: dataSingle().title,
-                image: dataSingle().image,
-                price: dataSingle().price,
-                color: dataSingle().color,
-                type: dataSingle().type,
-                quantity: quantity,
-                link: dataSingle().link + "-" + directionLink()
-            }
-        })
+        if (quantity !== "") {
+            const addCart = document.querySelector(".cart-img")
+            addCart.classList.add("to-carts")
+            setTimeout(() => { 
+                addCart.classList.remove("to-carts")
+            }, 2000)
+            dispatch({
+                type: "Add_to_cart",
+                item: {
+                    id: autoId(),
+                    title: dataSingle().title,
+                    image: dataSingle().image,
+                    price: dataSingle().price,
+                    color: dataSingle().color,
+                    type: dataSingle().type,
+                    quantity: quantity,
+                    link: dataSingle().link + "-" + directionLink()
+                }
+            })
+        }
     }
     console.log(carts)
     return (

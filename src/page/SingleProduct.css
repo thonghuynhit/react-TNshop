@@ -58,10 +58,10 @@
     height: 35px;
     width: 35px;
     font-size: 1.2rem;
-    border: solid 0.01rem var(--color);
+    border: solid 0.1rem var(--color);
     outline: none;
     transition: all ease 0.4s;
-    font-weight: 100;
+    font-weight: 300;
     color: rgb(145, 145, 145);
 }
 .single-product .quantity > div > button:hover {
@@ -69,15 +69,15 @@
     color: #fff;
 }
 .single-product .quantity > div > input {
-    font-weight: 100;
+    font-weight: 300;
     height: 35px;
     width: 55px;
     text-align: center;
     font-size: 1.2rem;
     box-sizing: border-box;
     border: none;
-    border-top: solid 0.01rem var(--color);
-    border-bottom: solid 0.01rem var(--color);
+    border-top: solid 0.1rem var(--color);
+    border-bottom: solid 0.1rem var(--color);
     outline: none;
     color: var(--color);
 }

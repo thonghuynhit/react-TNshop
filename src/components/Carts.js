@@ -6,7 +6,11 @@ import { useValueContext } from '../reducer'
 function Carts({ cart }) {
     const [{carts}, dispatch] = useValueContext()
     const [quantityCart, setQuantityCart] = React.useState(cart.quantity)
-    const previousState = React.useRef(quantityCart)
+    const previousState = React.useRef()
+    React.useEffect(() => {
+        previousState.current = quantityCart
+    }, [quantityCart])
+    console.log(previousState.current)
     const changeQuantityCart = e => {
         if (e.target.value[e.target.value.length - 1] !== " ") {
             if (!isNaN(e.target.value[e.target.value.length - 1])) {
@@ -21,14 +25,10 @@ function Carts({ cart }) {
                         type: "Change_quantity_cart",
                         change: changeQuantity(1)
                     })
-                } else {
-                    alert("Not number")
                 }
             }
         }
     }
-    console.log(cart.quantity)
-    console.log(quantityCart)
     React.useEffect(() => {
         console.log(carts)
     }, [])
@@ -50,56 +50,30 @@ function Carts({ cart }) {
         }
         return temp
     }
-    if (quantityCart === "") {
-        // dispatch({
-        //     type: "Change_quantity_cart",
-        //     change: changeQuantity()
-        // })
-    } else {
-        if (quantityCart !== cart.quantity) {
-            // dispatch({
-            //     type: "Change_quantity_cart",
-            //     change: changeQuantity()
-            // })
+    const increamQuantity = () => {
+        const temp = parseInt(cart.quantity) + 1
+        dispatch({
+            type: "Change_quantity_cart",
+            change: changeQuantity(temp)
+        })
+    }
+    const decreamQuantity = () => {
+        if (cart.quantity !== 1) {
+            const temp = cart.quantity - 1
+            dispatch({
+                type: "Change_quantity_cart",
+                change: changeQuantity(temp)
+            })
         }
     }
+    const removeCart = () => {
+        let temp = carts.filter(item => item.id !== cart.id)
+        dispatch({
+            type: "Remove_cart_item",
+            remove: temp
+        })
+    }
 
-    // React.useEffect(() => {
-    //     previousState.current = quantityCart
-    //     const changeQuantity = () => {
-    //         let temp = carts
-    //         for (let i = 0; i < temp.length; i++) {
-    //             if (temp[i].id === cart.id) {
-    //                 temp[i] = {
-    //                     id: cart.id,
-    //                     title: cart.title,
-    //                     image: cart.image,
-    //                     price: cart.price,
-    //                     color: cart.color,
-    //                     type: cart.type,
-    //                     link: cart.link,
-    //                     quantity: quantityCart
-    //                 }
-    //             }
-    //         }
-    //         return temp
-    //     }
-    //     if (quantityCart === "") {
-    //         dispatch({
-    //             type: "Change_quantity_cart",
-    //             change: changeQuantity()
-    //         })
-    //     } else {
-    //         if (quantityCart !== cart.quantity) {
-    //             dispatch({
-    //                 type: "Change_quantity_cart",
-    //                 change: changeQuantity()
-    //             })
-    //         }
-    //     }
-    //     console.log(previousState.current)
-    //     console.log(changeQuantity())
-    // }, [quantityCart])
     return (
         <Link className="carts" to={ "/shop/" + cart.link }>
             <div className="image">
@@ -109,10 +83,10 @@ function Carts({ cart }) {
                 <h3>{ cart.title }</h3>
                 <h4>${ cart.price.toFixed(2) } <span style={{ color: cart.color }}> { cart.color }</span></h4>
                 <div className="quantity">
-                    <button>+</button>
+                    <button onClick={ increamQuantity }>+</button>
                     <input type="text" value={ cart.quantity} onChange={ changeQuantityCart } />
-                    <button>-</button>
-                    <button>
+                    <button onClick={ decreamQuantity }>-</button>
+                    <button onClick={ removeCart }>
                         <DeleteForeverIcon />
                     </button>
                 </div>

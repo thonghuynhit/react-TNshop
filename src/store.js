@@ -96,6 +96,9 @@ function reducer(state, action) {
         case "Change_quantity_cart": 
             return { ...state, carts: action.change }
             break
+        case "Remove_cart_item":
+            return { ...state, carts: action.remove }
+            break
         default: return state
     }
 }
